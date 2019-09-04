@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta  charset=windows-1251">
+	<title>PhoneBook</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
+<script src="javascript.js"></script>
+</head>
+<body>
+<div ng-app="app" ng-controller="phonebookCtrl">
+<form>
+	<div class="row">
+		<div class="small-3 columns">
+			<label class="right inline">Имя</label>
+		</div>
+		<div class="small-9 columns">
+			<input type="text" ng-model="name" />
+		</div>
+	</div>
+  <p></p>
+	<div class="row">
+		<div class="small-3 columns">
+			<label class="right inline">№ телефона</label>
+		</div>
+		<div class="small-9 columns">
+			<input type="text" ng-model="phone" />
+		</div>
+	</div>
+  <p></p>
+	<div class="row">
+		<div class="small-3 columns"></div>
+		<div class="small-9 columns">
+			<button class="small radius" ng-click="addNewPerson()" ng-hide="currentPersonId > -1">Добавить</button>
+			<button class="small radius" ng-click="savePerson()" ng-show="currentPersonId > -1">Сохранить</button>
+		</div>
+	</div>
+</form>
+<p></p>
+<table id="phonebook">
+<thead>
+	<tr>
+		<th>№</th>
+		<th>Имя</th>
+    <th>№ телефона</th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+	<tr ng-repeat="person in phonebook">
+		<td>{{ $index + 1 }}</td>
+		<td>{{ person.name }}</td>
+		<td>{{ person.phone }}</td>
+		<td>
+			<ul class="button-group radius">
+				<li><button class="tiny radius" ng-click="editPerson($index)">ред-ть</button></li>
+				<li><button class="tiny radius alert" ng-click="deletePerson($index)">удалить</button></li>
+			</ul>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+</div>
+</body>
+</html>
